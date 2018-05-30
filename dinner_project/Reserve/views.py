@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .forms import SignUpForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile
+from django.contrib.auth import login,authenticate
 # Create your views here.
 def signup(request):
     '''
@@ -19,10 +20,13 @@ def signup(request):
             user.save()
             raw_password=form.cleaned_data.get('password1')
             user=authenticate(username=user.username,password=raw_password)
+            return redirect(welcome)
+            login(request,user)
+            return redirect(welcome)
     else:
         form=SignUpForm()
     return render(request,'signup.html',{"form":form})
-
+@login_required(login_url='/accounts/login')
 def welcome(request):
     title="Welcome to reserve"
     return render(request,'Hotel/welcome.html',{"title":title})
