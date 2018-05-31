@@ -35,3 +35,13 @@ class  Image(models.Model):
     image_path=models.ImageField(upload_to='images/',blank=True)
     description=models.CharField(max_length=40)
     restaurant=models.ForeignKey(Restaurant,null=True)
+class Menu(models.Model):
+    '''
+    A model that stores information on the menu available
+    '''
+
+    food_name=models.CharField(max_length=40)
+    food_image=models.ImageField(upload_to='images/',blank=True)
+    restaurant=models.ForeignKey(Restaurant,null=True)
+
+    

@@ -28,6 +28,7 @@
   {%for image in images%}
    <div class="col-md-4 col-sm-6 col-xs-12">
      <img src="{{image.image_path.url}}" class="img-responsive" >
+     <h4 style="font-family: 'Raleway', sans-serif">{{image.description}}</h4>
    </div>
   {% empty %}
   <h3 style="font-family: 'Raleway', sans-serif">No Images Available</h3>
