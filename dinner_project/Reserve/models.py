@@ -21,3 +21,16 @@ class Profile(models.Model):
         instance.profile.save()
     def __str__(self):
         return self.username
+class Restaurant(models.Model):
+    '''
+    a model that allows Restaurant to register their business
+    '''
+    name=models.CharField(max_length=40)
+    phone_number=models.CharField(max_length=40)
+    email=models.EmailField(max_length=40)
+    Opening_Hours=models.CharField(max_length=40)
+    Closing_Hours=models.CharField(max_length=40)
+class  Image(models.Model):
+    image_path=models.ImageField(upload_to='images/',blank=True)
+    description=models.CharField(max_length=40)
+    restaurant=models.ForeignKey(Restaurant,null=True)

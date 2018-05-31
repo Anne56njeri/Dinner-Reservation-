@@ -30,7 +30,7 @@ def signup(request):
 def welcome(request):
     title="Welcome to reserve"
     profile=Profile.objects.get(user=request.user)
-    return render(request,'Hotel/welcome.html',{"title":title})
+    return render(request,'Hotel/welcome.html',{"title":title,"profile":profile})
 def hotel(request):
     title="Find the hotel near you"
     return render(request,'find.html',{"title":title})

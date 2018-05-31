@@ -6,7 +6,7 @@ urlpatterns=[
     url(r'^$',views.welcome,name = 'Welcome'),
     url(r'^signup/',views.signup,name='signup'),
     url(r'^hotel/',views.hotel,name='Hotel'),
-    url(r'^restaurant/(\d+)',views.restaurant,name='Restaurant'),
+    url(r'^restaurant/(\d+)',views.restaurant,name='Rest'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
