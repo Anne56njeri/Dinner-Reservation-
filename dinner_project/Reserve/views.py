@@ -30,3 +30,6 @@ def signup(request):
 def welcome(request):
     title="Welcome to reserve"
     return render(request,'Hotel/welcome.html',{"title":title})
+def hotel(request):
+    title="Find the hotel near you"
+    return render(request,'find.html',{"title":title})
