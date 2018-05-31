@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import SignUpForm,RestaurantForm
+from .forms import SignUpForm,RestaurantForm,ImageForm
 from django.contrib.auth.decorators import login_required
-from .models import Profile
+from .models import Profile,Restaurant
 from django.contrib.auth import login,authenticate
+from django.contrib.auth.models import User
+
 # Create your views here.
 def signup(request):
     '''
@@ -36,7 +38,9 @@ def hotel(request):
     return render(request,'find.html',{"title":title})
 def restaurant(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
-    return render (request,'rest.html',{"current_profile":current_profile})
+    restaurant_info=Restaurant.objects.filter(id=profile_id)
+    images=Image.objects.filter(id=profile_id)
+    return render (request,'rest.html',{"current_profile":current_profile,"restaurant_info":restaurant_info,"images":images})
 def add(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
 
@@ -45,7 +49,21 @@ def add(request,profile_id):
         if form.is_valid():
             rest_form=form.save(commit=False)
             rest_form.user=current_profile
-
+            rest_form.save()
+            return redirect(restaurant,current_profile.id )
     else:
             form=RestaurantForm()
     return render(request,'form1.html',{"form":form,"current_profile":current_profile})
+def image(request,profile_id):
+    current_restaurant=Restaurant.objects.get(id=profile_id)
+
+    if request.method == 'POST':
+        form=ImageForm(request.POST,request.FILES)
+        if form.is_valid():
+            image_form=form.save(commit=False)
+            image_form.restaurant=current_restaurant
+            image_form.save()
+            return redirect(restaurant,current_profile.id )
+    else:
+        form=ImageForm()
+    return render (request,'image.html',{"form":form,"current_profile":current_profile})

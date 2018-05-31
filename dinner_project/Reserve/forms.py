@@ -19,6 +19,16 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('first_name','last_name','email','username','profile_image','sex','password1', 'password2')
 class RestaurantForm(forms.ModelForm):
+    '''
+    A restaurant form that picks the restaurant information
+    '''
     class Meta:
         model= Restaurant
         fields=('name','phone_number','Opening_Hours','Closing_Hours','email')
+class ImageForm(forms.ModelForm):
+    '''
+    A form that picks the form about the restaurant
+    '''
+    class Meta:
+        model=Image
+        fields=('image_path','description')

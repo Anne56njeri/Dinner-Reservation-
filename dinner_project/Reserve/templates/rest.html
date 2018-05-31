@@ -6,13 +6,36 @@
 {{block.super}}
 
 {% bootstrap_css %}
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'css/landing.css'%}">
 {% endblock %}
 
 {% block content %}
 <div class="container">
-<h1>{{title}}</h1>
+<h1 style="font-family: 'Raleway', sans-serif"> Restaurant  information</h1>
+ {% for restaurant in restaurant_info %}
+ <h1 style="font-family: 'Raleway', sans-serif">Name :{{restaurant.name}}</h1>
+  <h3 style="font-family: 'Raleway', sans-serif">Opening Hours: {{restaurant.Opening_Hours}}</h3>
+  <h3 style="font-family: 'Raleway', sans-serif"> Closing Hours: {{restaurant.Closing_Hours}}</h3>
 
+ {% empty %}
+ <h2 style="font-family: 'Raleway', sans-serif">No Information available</h2>
+ {% endfor %}
+
+</div>
+<hr>
+<div class="container">
+  {%for image in images%}
+   <div class="col-md-4 col-sm-6 col-xs-12">
+     <img src="{{image.image_path.url}}" class="img-responsive" >
+   </div>
+  {% empty %}
+  <h3 style="font-family: 'Raleway', sans-serif">No Images Available</h3>
+  <ul>
+   <li><h3 style="font-family: 'Raleway', sans-serif">To add images of your restaurant </h3></li>
+   <li><h3 style="font-family: 'Raleway', sans-serif">Click <b>Add Images</b> on the nav bar</h3></li>
+ </ul>
+  {%endfor %}
 </div>
 {% endblock %}
 {% block scripts %}

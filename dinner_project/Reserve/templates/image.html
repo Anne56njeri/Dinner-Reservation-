@@ -3,13 +3,14 @@
 {% load static %}
 {% block styles %}
 {% bootstrap_css %}
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'css/profile.css'%}">
 {% endblock %}
 {% block content %}
 <div class="container">
-<h1>Restaurant Info</h1>
+<h1 style="font-family: 'Raleway', sans-serif">Add Restaurant Images</h1>
 
- <form  action="{%url 'Add' current_profile.id %}" method="post" enctype="multipart/form-data">
+ <form  action="{%url 'Image' current_profile.id %}" method="post" enctype="multipart/form-data">
     {%csrf_token%}
 
     {% bootstrap_form form%}
