@@ -29,7 +29,11 @@ def signup(request):
 @login_required(login_url='/accounts/login')
 def welcome(request):
     title="Welcome to reserve"
+    profile=Profile.objects.get(user=request.user)
     return render(request,'Hotel/welcome.html',{"title":title})
 def hotel(request):
     title="Find the hotel near you"
     return render(request,'find.html',{"title":title})
+def restaurant(request,profile_id):
+    current_profile=Profile.objects.get(id=profile_id)
+    return render (request,'rest.html',{"current_profile":current_profile})
