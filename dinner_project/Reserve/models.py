@@ -30,6 +30,7 @@ class Restaurant(models.Model):
     email=models.EmailField(max_length=40)
     Opening_Hours=models.CharField(max_length=40)
     Closing_Hours=models.CharField(max_length=40)
+    user=models.ForeignKey(Profile,null=True)
 class  Image(models.Model):
     image_path=models.ImageField(upload_to='images/',blank=True)
     description=models.CharField(max_length=40)

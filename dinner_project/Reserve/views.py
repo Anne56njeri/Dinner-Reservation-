@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import SignUpForm
+from .forms import SignUpForm,RestaurantForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.contrib.auth import login,authenticate
@@ -37,3 +37,15 @@ def hotel(request):
 def restaurant(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
     return render (request,'rest.html',{"current_profile":current_profile})
+def add(request,profile_id):
+    current_profile=Profile.objects.get(id=profile_id)
+
+    if request.method == 'POST':
+        form=RestaurantForm(request.POST,request.FILES)
+        if form.is_valid():
+            rest_form=form.save(commit=False)
+            rest_form.user=current_profile
+
+    else:
+            form=RestaurantForm()
+    return render(request,'form1.html',{"form":form,"current_profile":current_profile})

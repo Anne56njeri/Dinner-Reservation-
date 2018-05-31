@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile
+from .models import Profile,Restaurant,Image
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 #create your forms here
@@ -18,3 +18,7 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('first_name','last_name','email','username','profile_image','sex','password1', 'password2')
+class RestaurantForm(forms.ModelForm):
+    class Meta:
+        model= Restaurant
+        fields=('name','phone_number','Opening_Hours','Closing_Hours','email')
