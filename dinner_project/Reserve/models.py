@@ -50,7 +50,7 @@ class Customer(models.Model):
     '''
     A model that saves customer information
     '''
-    phone_number=models.IntegerField(max_length=40)
+    phone_number=models.CharField(max_length=40)
     restaurant=models.ForeignKey(Restaurant,null=True)
     choices=(('Cash','Cash'),('M-pesa','M-pesa'),('Credit_card','Credit_card'),('Debit_card','Debit_card'))
     Payment_method=models.CharField(_('Payment_method'),max_length=30,blank=True,choices=choices)

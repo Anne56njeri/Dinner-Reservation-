@@ -60,6 +60,22 @@
  </ul>
   {%endfor %}
 </div>
+<hr>
+<div class="container">
+  <h2 style="font-family: 'Raleway', sans-serif">Requests Available</h2>
+  {%for request in requests%}
+  <div class="col-md-4 col-sm-6 col-xs-12">
+    <img src="{{request.name.profile_image.url}}" class="img-circle" style="height:60%;width:55%;">
+    <h4 style="font-family: 'Raleway', sans-serif">Name :{{request.name.username}}</h4>
+    <h4 style="font-family: 'Raleway', sans-serif">Phone Number: {{request.phone_number}}</h4>
+    <h4 style="font-family: 'Raleway', sans-serif">Seats_Booked: {{request.Number_of_seats}}</h4>
+    <button type="button" class="btn btn-info">Send Message</button>
+ </div>
+  {% empty %}
+  <h2 style="font-family: 'Raleway', sans-serif">No requests Available</h2>
+  {% endfor %}
+</div>
+
 
 {% endblock %}
 {% block scripts %}

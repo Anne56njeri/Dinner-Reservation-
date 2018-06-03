@@ -35,13 +35,15 @@ def welcome(request):
     return render(request,'Hotel/welcome.html',{"title":title,"profile":profile})
 def hotel(request):
     title="Find the hotel near you"
-    return render(request,'find.html',{"title":title})
+    current_profile=Profile.objects.get(id=request.user.id)
+    return render(request,'find.html',{"title":title,"current_profile":current_profile})
 def restaurant(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
     restaurant_info=Restaurant.objects.filter(id=profile_id)
     images=Image.objects.filter(restaurant=restaurant_info)
     menus=Menu.objects.filter(restaurant=restaurant_info)
-    return render (request,'rest.html',{"current_profile":current_profile,"restaurant_info":restaurant_info,"images":images,"menus":menus})
+    requests=Customer.objects.filter(restaurant=restaurant_info)
+    return render (request,'rest.html',{"current_profile":current_profile,"restaurant_info":restaurant_info,"images":images,"menus":menus,"requests":requests})
 def add(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
 
@@ -82,7 +84,7 @@ def menu(request,profile_id):
 def customer(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
     title="welcome customer"
-    rests=Customer.objects.filter(id=profile_id)
+    rests=Customer.objects.filter(name=current_profile)
     return render(request,'customer.html',{"title":title,"current_profile":current_profile,"rests":rests})
 def make(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
@@ -91,9 +93,15 @@ def make(request,profile_id):
         form=MakeForm(request.POST)
         if form.is_valid():
             make_form=form.save(commit=False)
-            make_form.user=current_profile
-            make.form.save()
+            make_form.name=current_profile
+            make_form.save()
             return redirect(customer,current_profile.id )
     else:
         form=MakeForm()
     return render (request, 'make.html',{"form":form,"current_profile":current_profile})
+def moreinfo(request,profile_id):
+    current_profile=Profile.objects.get(id=profile_id)
+    restaurant_info=Restaurant.objects.filter(id=profile_id)
+    images=Image.objects.filter(restaurant=restaurant_info)
+    menus=Menu.objects.filter(restaurant=restaurant_info)
+    return render (request,'info.html',{"current_profile":current_profile,"restaurant_info":restaurant_info,"images":images,"menus":menus})

@@ -18,8 +18,12 @@
 </div>
 <hr>
 <div class="container">
+  <h2 class="text-center"style="font-family: 'Raleway', sans-serif">Reservations Made</h2>
 {%for rest in rests %}
-<h3 style="font-family: 'Raleway', sans-serif">{{rest.name}}</h3>
+<h3 style="font-family: 'Raleway', sans-serif">{{rest.restaurant.name}}</h3>
+<h4 style="font-family: 'Raleway', sans-serif">Opening Hours: {{rest.restaurant.Opening_Hours}}</h4>
+<h4 style="font-family: 'Raleway', sans-serif">Closing Hours :{{rest.restaurant.Closing_Hours}}</h4>
+
 {% empty %}
 <h2 style="font-family: 'Raleway', sans-serif">No reservations made </h2>
 
