@@ -83,3 +83,16 @@ def customer(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
     title="welcome customer"
     return render(request,'customer.html',{"title":title,"current_profile":current_profile})
+def make(request,profile_id):
+    current_profile=Profile.objects.get(id=profile_id)
+
+    if request.method == 'POST':
+        form=MakeForm(request.POST)
+        if form.is_valid():
+            make_form=form.save(commit=False)
+            make_form.user=current_profile
+            make.form.save()
+            return redirect(customer,current_profile.id )
+    else:
+        form=MakeForm()
+    return render (request, 'make.html',{"form":form,"current_profile":current_profile})
