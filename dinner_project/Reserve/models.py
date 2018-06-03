@@ -31,6 +31,8 @@ class Restaurant(models.Model):
     Opening_Hours=models.CharField(max_length=40)
     Closing_Hours=models.CharField(max_length=40)
     user=models.ForeignKey(Profile,null=True)
+    def __str__(self):
+        return self.name
 class  Image(models.Model):
     image_path=models.ImageField(upload_to='images/',blank=True)
     description=models.CharField(max_length=40)
@@ -42,6 +44,5 @@ class Menu(models.Model):
 
     food_name=models.CharField(max_length=40)
     food_image=models.ImageField(upload_to='images/',blank=True)
+    price=models.CharField(max_length=40,null=True)
     restaurant=models.ForeignKey(Restaurant,null=True)
-
-    

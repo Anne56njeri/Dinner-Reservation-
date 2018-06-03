@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile,Restaurant,Image
+from .models import Profile,Restaurant,Image,Menu
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 #create your forms here
@@ -32,3 +32,10 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model=Image
         fields=('image_path','description')
+class MenuForm(forms.ModelForm):
+    '''
+    A form that picks the food on the menu
+    '''
+    class Meta:
+        model=Menu
+        fields=('food_name','food_image','price','restaurant')

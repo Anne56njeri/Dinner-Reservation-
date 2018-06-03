@@ -38,6 +38,29 @@
  </ul>
   {%endfor %}
 </div>
+<hr>
+<div class="container">
+    <h3 class="text-center" style="font-family: 'Raleway', sans-serif">Menu Avaliable</h3>
+  {%for menu in menus%}
+   <div class="row">
+     <div class="col-md-8">
+     <h4 style="font-family: 'Raleway', sans-serif">{{menu.food_name}}</h4>
+     <img src="{{menu.food_image.url}}" class="img-circle"  style="width:35%;height:25%;">
+
+   </div>
+   <div class="col-md-4">
+     <h4 style="font-family: 'Raleway', sans-serif">{{menu.price}}</h4>
+   </div>
+   </div>
+  {% empty %}
+  <h3 style="font-family: 'Raleway', sans-serif">No Menu Available</h3>
+  <ul>
+   <li><h3 style="font-family: 'Raleway', sans-serif">To add a menu of your restaurant </h3></li>
+   <li><h3 style="font-family: 'Raleway', sans-serif">Click <b>Add to Menu</b> on the nav bar</h3></li>
+ </ul>
+  {%endfor %}
+</div>
+
 {% endblock %}
 {% block scripts %}
 

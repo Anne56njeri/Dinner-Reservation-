@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import SignUpForm,RestaurantForm,ImageForm
+from .forms import SignUpForm,RestaurantForm,ImageForm,MenuForm
 from django.contrib.auth.decorators import login_required
-from .models import Profile,Restaurant,Image
+from .models import Profile,Restaurant,Image,Menu
 from django.contrib.auth import login,authenticate
 from django.contrib.auth.models import User
 
@@ -40,7 +40,8 @@ def restaurant(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
     restaurant_info=Restaurant.objects.filter(id=profile_id)
     images=Image.objects.filter(restaurant=restaurant_info)
-    return render (request,'rest.html',{"current_profile":current_profile,"restaurant_info":restaurant_info,"images":images})
+    menus=Menu.objects.filter(restaurant=restaurant_info)
+    return render (request,'rest.html',{"current_profile":current_profile,"restaurant_info":restaurant_info,"images":images,"menus":menus})
 def add(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
 
@@ -67,3 +68,14 @@ def image(request,profile_id):
     else:
         form=ImageForm()
     return render (request,'image.html',{"form":form,"current_profile":current_profile})
+def menu(request,profile_id):
+    current_profile=Restaurant.objects.get(id=profile_id)
+
+    if request.method == 'POST':
+        form=MenuForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(restaurant,current_profile.id )
+    else:
+        form=MenuForm()
+    return render (request, 'menu.html',{"form":form,"current_profile":current_profile})
