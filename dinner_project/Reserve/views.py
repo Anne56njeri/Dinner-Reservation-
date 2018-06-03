@@ -82,4 +82,4 @@ def menu(request,profile_id):
 def customer(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
     title="welcome customer"
-    return render(request,'customer.html'{"title":title,"current_profile":current_profile})
+    return render(request,'customer.html',{"title":title,"current_profile":current_profile})

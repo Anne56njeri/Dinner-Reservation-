@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block styles %}
+{{block.super}}
+
+{% bootstrap_css %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <img src="{{current_profile.profile_image.url}}" class="img-responsive" >
+    <h3 style="font-family: 'Raleway', sans-serif">Name: {{current_profile.username}}</h3>
+    <h3 style="font-family: 'Raleway', sans-serif">Sex: {{current_profile.sex}}</h3>
+
+</div>
+{% endblock %}
+{% block scripts %}
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+       {% bootstrap_javascript %}
+           <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
+
+      {% endblock %}
