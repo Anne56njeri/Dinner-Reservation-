@@ -56,3 +56,4 @@ class Customer(models.Model):
     Payment_method=models.CharField(_('Payment_method'),max_length=30,blank=True,choices=choices)
     Number_of_seats=models.CharField(max_length=40,null=True)
     name=models.ForeignKey(Profile,null=True)
+    food=models.ForeignKey(Menu,null=True)

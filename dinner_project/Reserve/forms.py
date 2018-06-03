@@ -46,3 +46,10 @@ class MakeForm(forms.ModelForm):
     class Meta:
         model=Customer
         fields=('phone_number','Payment_method','Number_of_seats','restaurant')
+class FoodForm(forms.ModelForm):
+    '''
+    A form that saves the food the customer has ordered
+    '''
+    class Meta:
+        model=Customer
+        fields=('food',)

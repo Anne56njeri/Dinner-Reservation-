@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import SignUpForm,RestaurantForm,ImageForm,MenuForm,MakeForm
+from .forms import SignUpForm,RestaurantForm,ImageForm,MenuForm,MakeForm,FoodForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile,Restaurant,Image,Menu,Customer
 from django.contrib.auth import login,authenticate
@@ -105,3 +105,13 @@ def moreinfo(request,profile_id):
     images=Image.objects.filter(restaurant=restaurant_info)
     menus=Menu.objects.filter(restaurant=restaurant_info)
     return render (request,'info.html',{"current_profile":current_profile,"restaurant_info":restaurant_info,"images":images,"menus":menus})
+def food(request):
+    current_profile=Profile.objects.get(id=request.user.id)
+    if request.method == 'POST':
+        form=FoodForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(customer,current_profile.id )
+    else:
+        form=MakeForm()
+    return render (request,'food.html',{"current_profile":current_profile,"form":form})    
