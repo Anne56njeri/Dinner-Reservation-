@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import SignUpForm,RestaurantForm,ImageForm,MenuForm
+from .forms import SignUpForm,RestaurantForm,ImageForm,MenuForm,MakeForm
 from django.contrib.auth.decorators import login_required
-from .models import Profile,Restaurant,Image,Menu
+from .models import Profile,Restaurant,Image,Menu,Customer
 from django.contrib.auth import login,authenticate
 from django.contrib.auth.models import User
 
@@ -82,7 +82,8 @@ def menu(request,profile_id):
 def customer(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
     title="welcome customer"
-    return render(request,'customer.html',{"title":title,"current_profile":current_profile})
+    rests=Customer.objects.filter(id=profile_id)
+    return render(request,'customer.html',{"title":title,"current_profile":current_profile,"rests":rests})
 def make(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
 

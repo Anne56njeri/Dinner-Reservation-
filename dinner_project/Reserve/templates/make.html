@@ -10,7 +10,7 @@
 <div class="container">
 <h1 style="font-family: 'Raleway', sans-serif">Make a Reservation</h1>
 
- <form  action="{%url 'Image' current_profile.id %}" method="post" enctype="multipart/form-data">
+ <form  action="{%url 'Make' current_profile.id %}" method="post" enctype="multipart/form-data">
     {%csrf_token%}
 
     {% bootstrap_form form%}

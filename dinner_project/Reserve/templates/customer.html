@@ -16,6 +16,19 @@
     <h3 style="font-family: 'Raleway', sans-serif">Sex: {{current_profile.sex}}</h3>
 
 </div>
+<hr>
+<div class="container">
+{%for rest in rests %}
+<h3 style="font-family: 'Raleway', sans-serif">{{rest.name}}</h3>
+{% empty %}
+<h2 style="font-family: 'Raleway', sans-serif">No reservations made </h2>
+
+<ul>
+ <li><h3 style="font-family: 'Raleway', sans-serif">To make a reservation </h3></li>
+ <li><h3 style="font-family: 'Raleway', sans-serif">Click <b>Make reservation</b> on the nav bar</h3></li>
+</ul>
+{% endfor %}
+</div>
 {% endblock %}
 {% block scripts %}
 

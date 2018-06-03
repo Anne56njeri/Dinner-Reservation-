@@ -55,4 +55,4 @@ class Customer(models.Model):
     choices=(('Cash','Cash'),('M-pesa','M-pesa'),('Credit_card','Credit_card'),('Debit_card','Debit_card'))
     Payment_method=models.CharField(_('Payment_method'),max_length=30,blank=True,choices=choices)
     Number_of_seats=models.CharField(max_length=40,null=True)
-    
+    name=models.ForeignKey(Profile,null=True)
