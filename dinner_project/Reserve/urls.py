@@ -10,7 +10,8 @@ urlpatterns=[
     url(r'^info/(\d+)',views.add,name='Add'),
     url(r'^image/(\d+)',views.image,name='Image'),
     url(r'^menu/(\d+)',views.menu,name='Menu'),
-    url(r'^customer/(\d+)',views.customer,name='Customer')
+    url(r'^customer/(\d+)',views.customer,name='Customer'),
+    url(r'^make/(\d+))',views.make,name='Make')
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
