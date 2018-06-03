@@ -11,6 +11,13 @@
 {% endblock %}
 
 {% block content %}
+
+<div class="jumbotron"style="background-image:url(../../static/photos/back7.jpg) ;height:400px;background-position:center;background-size:cover;  background-repeat: no-repeat;">
+  <h1 class="text-center" style="font-family: 'Raleway', sans-serif;font-size:45px;color:white;">Making reservation is now </h1>
+    <h1 class="text-center" style="font-family: 'Raleway', sans-serif;font-size:40px;color:white">made <b>Simpler</b></h1>
+
+
+</div>
 <div class="container">
 <h1 style="font-family: 'Raleway', sans-serif"> Restaurant  information</h1>
  {% for restaurant in restaurant_info %}
@@ -21,15 +28,17 @@
  {% empty %}
  <h2 style="font-family: 'Raleway', sans-serif">No Information available</h2>
  {% endfor %}
-
-</div>
 <hr>
+</div>
+
 <div class="container">
   {%for image in images%}
    <div class="col-md-4 col-sm-6 col-xs-12">
      <img src="{{image.image_path.url}}" class="img-responsive" >
      <h4 style="font-family: 'Raleway', sans-serif">{{image.description}}</h4>
+   <hr>
    </div>
+
   {% empty %}
   <h3 style="font-family: 'Raleway', sans-serif">No Images Available</h3>
   <ul>
@@ -37,8 +46,9 @@
    <li><h3 style="font-family: 'Raleway', sans-serif">Click <b>Add Images</b> on the nav bar</h3></li>
  </ul>
   {%endfor %}
-</div>
 <hr>
+</div>
+
 <div class="container">
     <h3 class="text-center" style="font-family: 'Raleway', sans-serif">Menu Avaliable</h3>
   {%for menu in menus%}
@@ -59,8 +69,9 @@
    <li><h3 style="font-family: 'Raleway', sans-serif">Click <b>Add to Menu</b> on the nav bar</h3></li>
  </ul>
   {%endfor %}
+  <hr>
 </div>
-<hr>
+
 <div class="container">
   <h2 style="font-family: 'Raleway', sans-serif">Requests Available</h2>
   {%for request in requests%}
@@ -74,6 +85,7 @@
   {% empty %}
   <h2 style="font-family: 'Raleway', sans-serif">No requests Available</h2>
   {% endfor %}
+  <hr>
 </div>
 
 

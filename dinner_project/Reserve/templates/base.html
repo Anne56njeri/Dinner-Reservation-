@@ -97,10 +97,30 @@
      .iw_table_icon {
        text-align: right;
      }
+     #mode-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        margin-left: 12px;
+        padding: 5px 11px 0px 11px;
+      }
+      .card {
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+transition: 0.3s;
+border-radius: 5px; /* 5px rounded corners */
+}
+ /* On mouse-over, add a deeper shadow */
+.card:hover {
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.con {
+   padding: 2px 16px;
+}
+
 </style>
   {% endblock %}
 {{ form.media }}
 </head>
+
 
 <body>
 {% include "navbar.html" %}

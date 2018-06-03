@@ -117,3 +117,7 @@ def food(request):
     else:
         form=FoodForm()
     return render (request,'food.html',{"current_profile":current_profile,"form":form})
+def direction(request):
+    title="directions"
+    current_profile=Profile.objects.get(id=request.user.id)
+    return render(request,'direct.html',{"title":title,"current_profile":current_profile})

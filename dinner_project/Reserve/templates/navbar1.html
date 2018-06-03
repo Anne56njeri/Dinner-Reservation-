@@ -14,8 +14,8 @@
      <a class="navbar-brand" href="{% url 'Welcome' %}" style="font-family: 'Raleway', sans-serif; font-size:35px;color:black;">Reserve</a>
    </div>
    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav"> {{profile.id}}
-        <li class="active"><a href="{%url 'Rest' profile.id %}"  style="font-family: 'Raleway', sans-serif;font-size:25px;color:black;">Restaurant<span class="sr-only">(current)</span></a></li>
+      <ul class="nav navbar-nav">
+        <li class=""><a href="{%url 'Rest' profile.id %}"  style="font-family: 'Raleway', sans-serif;font-size:25px;color:black;">Restaurant<span class="sr-only">(current)</span></a></li>
         <li class=""><a href="{%url 'Customer' profile.id %}" style="font-family: 'Raleway', sans-serif;font-size:25px;color:black;"> <span class="sr-only"></span>Customer</a></li>
 
       </ul>

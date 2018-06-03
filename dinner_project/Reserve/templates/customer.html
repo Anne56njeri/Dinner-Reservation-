@@ -10,22 +10,33 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-  <img src="{{current_profile.profile_image.url}}" class="img-responsive" >
-    <h3 style="font-family: 'Raleway', sans-serif">Name: {{current_profile.username}}</h3>
-    <h3 style="font-family: 'Raleway', sans-serif">Sex: {{current_profile.sex}}</h3>
+<div class="jumbotron"style="background-image:url(../../static/photos/back7.jpg) ;height:400px;background-position:center;background-size:cover;  background-repeat: no-repeat;">
+  <h1 class="text-center" style="font-family: 'Raleway', sans-serif;font-size:45px;color:white;">Making reservation is now </h1>
+    <h1 class="text-center" style="font-family: 'Raleway', sans-serif;font-size:40px;color:white">made <b>Simpler</b></h1>
+
 
 </div>
-<hr>
 <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+  <img src="{{current_profile.profile_image.url}}" class="img-responsive"style="width:100%;" >
+  <div class="con">
+    <h3 style="font-family: 'Raleway', sans-serif">Name: {{current_profile.username}}</h3>
+    <h3 style="font-family: 'Raleway', sans-serif">Sex: {{current_profile.sex}}</h3>
+  </div>
+</div>
+</div>
+
+<div class="col-md-6">
   <h2 class="text-center"style="font-family: 'Raleway', sans-serif">Reservations Made</h2>
 {%for rest in rests %}
-<h3 style="font-family: 'Raleway', sans-serif">{{rest.restaurant.name}}</h3>
-<h4 style="font-family: 'Raleway', sans-serif">Opening Hours: {{rest.restaurant.Opening_Hours}}</h4>
-<h4 style="font-family: 'Raleway', sans-serif">Closing Hours :{{rest.restaurant.Closing_Hours}}</h4>
-<h4 style="font-family: 'Raleway', sans-serif">Food Ordered: {{rest.food.food_name}} .... {{rest.food.price}}</h4>
+<h3 class="text-center" style="font-family: 'Raleway', sans-serif">{{rest.restaurant.name}}</h3>
+<h4 class="text-center" style="font-family: 'Raleway', sans-serif">Opening Hours: {{rest.restaurant.Opening_Hours}}</h4>
+<h4 class="text-center" style="font-family: 'Raleway', sans-serif">Closing Hours :{{rest.restaurant.Closing_Hours}}</h4>
+<h4 class="text-center" style="font-family: 'Raleway', sans-serif">Food Ordered: {{rest.food.food_name}} .... {{rest.food.price}}</h4>
 
-<button type="button"class="btn btn-info"><a href="{%url 'MoreInfo' rest.restaurant.id %}">More Info</a></button>
+<h2 class="text-center"><button type="button"class="btn btn-info"><a href="{%url 'MoreInfo' rest.restaurant.id %}">More Info</a></button></h2>
 {% empty %}
 <h2 style="font-family: 'Raleway', sans-serif">No reservations made </h2>
 
@@ -34,6 +45,8 @@
  <li><h3 style="font-family: 'Raleway', sans-serif">Click <b>Make reservation</b> on the nav bar</h3></li>
 </ul>
 {% endfor %}
+</div>
+</div>
 </div>
 {% endblock %}
 {% block scripts %}
