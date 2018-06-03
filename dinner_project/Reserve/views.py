@@ -79,3 +79,7 @@ def menu(request,profile_id):
     else:
         form=MenuForm()
     return render (request, 'menu.html',{"form":form,"current_profile":current_profile})
+def customer(request,profile_id):
+    current_profile=Profile.objects.get(id=profile_id)
+    title="welcome customer"
+    return render(request,'customer.html'{"title":title,"current_profile":current_profile})
