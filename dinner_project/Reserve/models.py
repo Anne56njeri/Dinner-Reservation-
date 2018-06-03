@@ -46,6 +46,8 @@ class Menu(models.Model):
     food_image=models.ImageField(upload_to='images/',blank=True)
     price=models.CharField(max_length=40,null=True)
     restaurant=models.ForeignKey(Restaurant,null=True)
+    def __str__(self):
+        return self.food_name
 class Customer(models.Model):
     '''
     A model that saves customer information
@@ -57,3 +59,4 @@ class Customer(models.Model):
     Number_of_seats=models.CharField(max_length=40,null=True)
     name=models.ForeignKey(Profile,null=True)
     food=models.ForeignKey(Menu,null=True)
+    

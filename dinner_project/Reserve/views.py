@@ -107,11 +107,13 @@ def moreinfo(request,profile_id):
     return render (request,'info.html',{"current_profile":current_profile,"restaurant_info":restaurant_info,"images":images,"menus":menus})
 def food(request):
     current_profile=Profile.objects.get(id=request.user.id)
+    current_customer=Customer.objects.get(id=request.user.id)
     if request.method == 'POST':
-        form=FoodForm(request.POST)
+        form=FoodForm(request.POST,instance=current_customer)
         if form.is_valid():
-            form.save()
+            food=form.save(commit=False)
+
             return redirect(customer,current_profile.id )
     else:
-        form=MakeForm()
-    return render (request,'food.html',{"current_profile":current_profile,"form":form})    
+        form=FoodForm()
+    return render (request,'food.html',{"current_profile":current_profile,"form":form})

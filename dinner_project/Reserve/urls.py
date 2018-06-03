@@ -13,7 +13,7 @@ urlpatterns=[
     url(r'^customer/(\d+)',views.customer,name='Customer'),
     url(r'^make/(\d+)',views.make,name='Make'),
     url(r'^moreinfo/(\d+)',views.moreinfo,name='MoreInfo'),
-    url(r'^food',views.food,name='Food')
+    url(r'^food/',views.food,name='Food')
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
