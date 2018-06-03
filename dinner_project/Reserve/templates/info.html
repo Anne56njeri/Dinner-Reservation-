@@ -17,7 +17,7 @@
  <h1 style="font-family: 'Raleway', sans-serif">Name :{{restaurant.name}}</h1>
   <h3 style="font-family: 'Raleway', sans-serif">Opening Hours: {{restaurant.Opening_Hours}}</h3>
   <h3 style="font-family: 'Raleway', sans-serif"> Closing Hours: {{restaurant.Closing_Hours}}</h3>
-  <button type="button" class="btn btn-info">Make an order</button>
+  <button type="button" class="btn btn-info"><a href="{% url 'Food'%}">Make an order</a></button>
  {% empty %}
  <h2 style="font-family: 'Raleway', sans-serif">No Information available</h2>
  {% endfor %}
