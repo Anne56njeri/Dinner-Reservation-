@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile,Restaurant,Image,Menu
+from .models import Profile,Restaurant,Image,Menu,Customer
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 #create your forms here
@@ -39,3 +39,10 @@ class MenuForm(forms.ModelForm):
     class Meta:
         model=Menu
         fields=('food_name','food_image','price','restaurant')
+class MakeForm(forms.ModelForm):
+    '''
+    a form that saves the customers information when they make a reservation
+    '''
+    class Meta:
+        model=Customer
+        fields=('phone_number','Payment_method','Number_of_seats','restaurant')

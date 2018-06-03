@@ -35,7 +35,7 @@
         <option value="za">South Africa</option>
         <option value="es">Spain</option>
         <option value="pt">Portugal</option>
-        <option value="us" selected>U.S.A.</option>
+        <option value="us" selected>U.S.A</option>
         <option value="uk">United Kingdom</option>
       </select>
     </div>
@@ -192,6 +192,7 @@
       function search() {
         var search = {
           bounds: map.getBounds(),
+
           types: ['restaurant']
         };
 
@@ -347,6 +348,17 @@
         } else {
           document.getElementById('iw-website-row').style.display = 'none';
         }
+        var photos = place.photos;
+  if (!photos) {
+    return;
+  }
+
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location,
+    title: place.name,
+    icon: photos[0].getUrl({'maxWidth': 35, 'maxHeight': 35})
+  });
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmrKc7FjQwLm9vEtseo5LK7Z6M_1aPm5k&libraries=places&callback=initMap"
