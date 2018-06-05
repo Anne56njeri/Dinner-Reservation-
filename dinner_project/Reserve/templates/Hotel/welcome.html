@@ -17,7 +17,19 @@
 
 
 </div>
-
+<div class="container">
+    <h1 class="text-center" style="font-family: 'Raleway', sans-serif;font-size:40px;color:black">Check out our restaurants in Nairobi</h1>
+    <div class="row row-flex">
+    {%for image in images %}
+      <div class="col-md-4 col-sm-6 col-xs-12">
+   <div class="card">
+    <img src="{{image.rest_image.url}}"class="img-responsive">
+    <h4 style="font-family: 'Raleway', sans-serif">{{image.name}}</h4>
+  </div>
+  </div>
+  {% endfor %}
+</div>
+</div>
 {% endblock %}
 {% block scripts %}
 

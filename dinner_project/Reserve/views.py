@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .forms import SignUpForm,RestaurantForm,ImageForm,MenuForm,MakeForm,FoodForm
 from django.contrib.auth.decorators import login_required
-from .models import Profile,Restaurant,Image,Menu,Customer
+from .models import Profile,Restaurant,Image,Menu,Customer,RestaurantImages
 from django.contrib.auth import login,authenticate
 from django.contrib.auth.models import User
 
@@ -31,15 +31,16 @@ def signup(request):
 @login_required(login_url='/accounts/login')
 def welcome(request):
     title="Welcome to reserve"
+    images=RestaurantImages.objects.all()
     profile=Profile.objects.get(user=request.user)
-    return render(request,'Hotel/welcome.html',{"title":title,"profile":profile})
+    return render(request,'Hotel/welcome.html',{"title":title,"profile":profile,"images":images})
 def hotel(request):
     title="Find the hotel near you"
     current_profile=Profile.objects.get(id=request.user.id)
     return render(request,'find.html',{"title":title,"current_profile":current_profile})
 def restaurant(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
-    restaurant_info=Restaurant.objects.filter(id=profile_id)
+    restaurant_info=Restaurant.objects.filter(user=current_profile)
     images=Image.objects.filter(restaurant=restaurant_info)
     menus=Menu.objects.filter(restaurant=restaurant_info)
     requests=Customer.objects.filter(restaurant=restaurant_info)
@@ -58,20 +59,22 @@ def add(request,profile_id):
             form=RestaurantForm()
     return render(request,'form1.html',{"form":form,"current_profile":current_profile})
 def image(request,profile_id):
-    current_profile=Restaurant.objects.get(id=profile_id)
+    current_profile=Profile.objects.get(id=profile_id)
+    current_rest=Restaurant.objects.get(user=current_profile)
 
     if request.method == 'POST':
         form=ImageForm(request.POST,request.FILES)
         if form.is_valid():
             image_form=form.save(commit=False)
-            image_form.restaurant=current_profile
+            image_form.restaurant=current_rest
             image_form.save()
             return redirect(restaurant,current_profile.id )
     else:
         form=ImageForm()
-    return render (request,'image.html',{"form":form,"current_profile":current_profile})
+    return render (request,'image.html',{"form":form,"current_profile":current_profile,"current_rest":current_rest})
 def menu(request,profile_id):
-    current_profile=Restaurant.objects.get(id=profile_id)
+    current_profile=Profile.objects.get(id=profile_id)
+    current_rest=Restaurant.objects.get(user=current_profile)
 
     if request.method == 'POST':
         form=MenuForm(request.POST,request.FILES)
@@ -80,7 +83,7 @@ def menu(request,profile_id):
             return redirect(restaurant,current_profile.id )
     else:
         form=MenuForm()
-    return render (request, 'menu.html',{"form":form,"current_profile":current_profile})
+    return render (request, 'menu.html',{"form":form,"current_profile":current_profile,"current_rest":current_rest})
 def customer(request,profile_id):
     current_profile=Profile.objects.get(id=profile_id)
     title="welcome customer"

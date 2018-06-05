@@ -59,4 +59,7 @@ class Customer(models.Model):
     Number_of_seats=models.CharField(max_length=40,null=True)
     name=models.ForeignKey(Profile,null=True)
     food=models.ForeignKey(Menu,null=True)
-    
+
+class RestaurantImages(models.Model):
+    name=models.CharField(max_length=40)
+    rest_image=models.ImageField(upload_to='rest/')
