@@ -1,14 +1,14 @@
 ## Reserve
 An app bulid using Django a python framework  
 
-- Home page
-![Screenshot](screenshoot1.png)
+- Alert Message
+![Screenshot](screen.png)
 
 - Driver Profile Page
 ![Screenshot](screenshoot2.png)
 
 - Directions map
-![Screenshot](screenshoot5.png)
+![Screenshot](screenshoot7.png)
 
 ## Author name
 Maryanne  Njeri
